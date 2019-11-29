@@ -1,0 +1,7 @@
+{
+  "netid"	: 	"xc28",
+  "frontend": 	"http://xc28hw6.surge.sh/",
+  "backend"	:	"http://xc28app222.herokuapp.com/",
+  "testuser":	"xc28",
+  "password":	"123",
+}

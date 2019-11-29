@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node spec/ --junitreport",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Xi Cheng",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "es6-promise": "^4.2.8",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jasmine-node": "^3.0.0",
+    "jasmine-xml-reporter": "^1.2.1",
+    "md5": "^2.2.1",
+    "mongoose": "^5.7.8",
+    "multiparty": "^4.2.1",
+    "static": "^2.0.0"
+  }
+}
