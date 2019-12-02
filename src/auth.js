@@ -26,7 +26,7 @@ FacebookStrategy.prototype.authorizationParams = function(options){
 passport.use('FBlogin',new FacebookStrategy({
   clientID: '1471631546324166',
   clientSecret: '18e4892ac296db120a8810c4aaa33982',
-  callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  callbackURL: 'https://xc28hw7.herokuapp.com/auth/facebook/callback',
   profileFields: ["email", "name"],
   authType: 'reauthenticate',
 },function(accessToken,refreshToken,profile,done){
@@ -101,7 +101,7 @@ function FBlogin(req,res){
 passport.use('FBlink',new FacebookStrategy({
   clientID: '1471631546324166',
   clientSecret: '18e4892ac296db120a8810c4aaa33982',
-  callbackURL: 'http://localhost:3000/auth/facebook2/callback',
+  callbackURL: 'https://xc28hw7.herokuapp.com/auth/facebook2/callback',
   profileFields: ["email", "name"],
   authType: 'reauthenticate',
 },function(accessToken,refreshToken,profile,done){
