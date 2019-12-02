@@ -13,7 +13,13 @@ var commentSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
 	username: String,
         salt: String,
-        hash: String
+        hash: String,
+        link: {
+                google:String,
+                facebook:String,
+                rice:String,
+                },
+        isThirdParty:String,
 })
 var profileSchema = new mongoose.Schema( {
     username: String,
@@ -22,7 +28,8 @@ var profileSchema = new mongoose.Schema( {
     email: String,
     dob: String,
     zipcode: String,
-    avatar: String
+    avatar: String,
+
 })
 var articleSchema = new mongoose.Schema( {
     id: Number,

@@ -1,7 +1,16 @@
 var cookieKey = 'sid'
 const express = require('express')
 const multiparty = require('multiparty')
-var Profile = require('./model.js').Profile
+const Profile = require('./model.js').Profile
+const User = require('./model.js').User
+const cloudinary = require('cloudinary')
+const multer = require('multer')
+const stream = require('stream')
+cloudinary.config({
+    cloud_name: 'hctu5fc4g',
+    api_key: '937137325281613',
+    api_secret: 'za0fvX6_qvEohlPWcLW7Jv2olK4'
+})
 
 function Getheadline(req,res){
     var username = req.params.user
@@ -136,28 +145,27 @@ function Getavatar(req,res){
 }
 
 function Putavatar(req,res){
-    var username = req.username
-    //var avatar = req.body.avatar
-    var form = new multiparty.Form()
-    form.uploadDir ='uploads/avatar'
-
-    form.parse(req,function(err,fields,files){
-        var filesTmp = JSON.stringify(files)
-        if(err){
-            console.log('parse error'+err)
-        }
-        else{
-            var testJson=eval("("+filesTmp+")")
-        
-        console.log(testJson.avatar[0].path)
-        Profile.updateOne({username:username},{avatar:testJson.avatar[0].path}).exec(function(err, users){
-        console.log('avatar update')
-        var Item = {"username":username,"avatar":testJson.avatar[0].path}
-        res.json(Item)
-
-    })}
-    })
+    multer().single('avatar')(req,res,()=>doUpload(req,res))
 }
+
+function doUpload(req,res){
+    const uploadStream = cloudinary.uploader.upload_stream(result=>{
+        var username = req.username
+        console.log(req.file)
+        Profile.updateOne({username:username},{avatar:result.url}).exec(function(err, users){
+        console.log('avatar update')
+        var Item = {"username":username,"avatar":result.url}
+        res.send(Item)
+    })
+    })
+    const s = new stream.PassThrough();
+    s.end(req.file.buffer)
+    s.pipe(uploadStream)
+    s.on('end',uploadStream.end)
+}
+
+
+
 exports.Getheadline = Getheadline
 exports.Putheadline = Putheadline
 exports.Getemail = Getemail
@@ -167,3 +175,4 @@ exports.Putzipcode = Putzipcode
 exports.Getdob = Getdob
 exports.Putavatar = Putavatar
 exports.Getavatar = Getavatar
+
