@@ -75,7 +75,7 @@ var Profile = require('./src/model.js').Profile
 var Article = require('./src/model.js').Article
 
 /*cors options*/
-var whitelist = ['http://localhost:4200', 'http://xc28hw6.surge.sh','http://xc28hw7.surge.sh']
+var whitelist = ['http://localhost:4200', 'http://xc28hw6.surge.sh','http://xc28hw7.surge.sh','https://xc28hw6.surge.sh','https://xc28hw7.surge.sh']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
