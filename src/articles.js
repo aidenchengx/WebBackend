@@ -151,7 +151,7 @@ function Putarticle(req,res){
         res.sendStatus(400)
     }
     
-    if(!commentId||commentId == "")
+    if(commentId==null||commentId == "")
         {
             commentchange = 0
             textchange = 1
