@@ -14,8 +14,8 @@ var Article = require('./model.js').Article
 var pepper = md5("thisismypepper")
 var mySecretMessage = md5("thisismysecretmessage")
 console.log(process.env.REDIS_URL)
-process.env.REDIS_URL = 'redis://h:p2e5f55a5d1cb9a7fdb185d43e5b0d4857be2dea28beff3adea511405dd0e7d4c@ec2-18-214-19-152.compute-1.amazonaws.com:23649'
-const redis = require('redis').createClient(process.env.REDIS_URL)
+var clienturl = process.env.REDIS_URL || 'redis://h:p2e5f55a5d1cb9a7fdb185d43e5b0d4857be2dea28beff3adea511405dd0e7d4c@ec2-18-214-19-152.compute-1.amazonaws.com:23649'
+const redis = require('redis').createClient(clienturl)
 
 FacebookStrategy.prototype.authorizationParams = function(options){
 	var params = {};
@@ -345,7 +345,7 @@ function Register(req,res){
             res.sendStatus(400)
        }
        else{
-       Profile({ username:username, email:email, dob:dob, zipcode:zipcode,status:"placeholderheadline",avatar:"uploads\\avatar\\placeholder.png",following:[]}).save();
+       Profile({ username:username, email:email, dob:dob, zipcode:zipcode,status:"placeholderheadline",avatar:"https://res.cloudinary.com/hctu5fc4g/image/upload/v1575050876/om7pivkfz4gxoo9dx67p.png",following:[]}).save();
       Article.countDocuments({}, function( err, count){
   		for(var i=0;i<5;i++)
   			{	var newarticle = {}
